@@ -1,0 +1,26 @@
+import sys
+import sqlite3
+from PyQt5 import uic
+from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QPushButton, QTableWidgetItem
+from PyQt5.QtWidgets import QInputDialog, QListWidgetItem, QListWidget, QLabel
+from PyQt5.QtGui import QPixmap
+
+
+class MyWidget(QMainWindow):
+    def __init__(self):
+        super().__init__()
+        uic.loadUi('untitled.ui', self)
+        self.label.setPixmap(QPixmap('picture.png'))
+
+    def run(self):
+        pass
+
+
+class MapAPI:
+    pass
+
+
+app = QApplication(sys.argv)
+ex = MyWidget()
+ex.show()
+sys.exit(app.exec_())
