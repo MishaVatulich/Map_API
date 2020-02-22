@@ -35,9 +35,11 @@ class Main(QWidget):
         if event.key() == Qt.Key_PageUp and int(self.map_api.zoom) < 17:
             self.map_api.zoom = str(int(self.map_api.zoom) + 1)
             self.map_api.draw()
+            self.image.setPixmap(QPixmap('map.png'))
         elif event.key() == Qt.Key_PageDown and int(self.map_api.zoom) > 0:
             self.map_api.zoom = str(int(self.map_api.zoom) - 1)
             self.map_api.draw()
+            self.image.setPixmap(QPixmap('map.png'))
         elif event.key() == Qt.Key_Left:
             pass
         elif event.key() == Qt.Key_Right:
