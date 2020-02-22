@@ -45,28 +45,33 @@ class Main(QWidget):
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_PageUp and int(self.map_api.zoom) < 17:
             self.map_api.zoom = str(int(self.map_api.zoom) + 1)
-            self.map_api.draw()
-            self.image.setPixmap(QPixmap('map.png'))
+            self.update_map()
         elif event.key() == Qt.Key_PageDown and int(self.map_api.zoom) > 0:
             self.map_api.zoom = str(int(self.map_api.zoom) - 1)
-            self.map_api.draw()
-            self.image.setPixmap(QPixmap('map.png'))
-        elif event.key() == Qt.Key_Left:
-            pass
-        elif event.key() == Qt.Key_Right:
-            pass
-        elif event.key() == Qt.Key_Up:
-            pass
-        elif event.key() == Qt.Key_Down:
-            pass
+            self.update_map()
+        elif event.key() == Qt.Key_A:
+            self.map_api.cords[0] = str(float(self.map_api.cords[0]) - 720 / 2 ** int(self.map_api.zoom))
+            self.update_map()
+        elif event.key() == Qt.Key_D:
+            self.map_api.cords[0] = str(float(self.map_api.cords[0]) + 720 / 2 ** int(self.map_api.zoom))
+            self.update_map()
+        elif event.key() == Qt.Key_W:
+            self.map_api.cords[1] = str(float(self.map_api.cords[1]) + 360 / 2 ** int(self.map_api.zoom))
+            self.update_map()
+        elif event.key() == Qt.Key_S:
+            self.map_api.cords[1] = str(float(self.map_api.cords[1]) - 360 / 2 ** int(self.map_api.zoom))
+            self.update_map()
         elif event.key() == Qt.Key_End:
             self.map_api.mod += 1
-            self.map_api.draw()
-            self.image.setPixmap(QPixmap('map.png'))
+            self.update_map()
 
     def search(self):
         find_object = self.object_input.text()
         self.map_api.find(find_object)
+        self.image.setPixmap(QPixmap('map.png'))
+
+    def update_map(self):
+        self.map_api.draw()
         self.image.setPixmap(QPixmap('map.png'))
 
 
@@ -75,4 +80,3 @@ if __name__ == '__main__':
     ex = Main()
     ex.show()
     sys.exit(app.exec())
-
