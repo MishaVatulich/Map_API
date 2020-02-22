@@ -25,3 +25,14 @@ class MapAPI():
         map_file = "map.png"
         with open(map_file, "wb") as file:
             file.write(response.content)
+
+    def find(self, find_object):
+        geocoder_request = "http://geocode-maps.yandex.ru/1.x/?apikey=40d1649f-0493-4b70-98ba-98533de7710b&" \
+                   "geocode=" + find_object + "&format=json"
+        response = requests.get(geocoder_request)
+        if response:
+            json_response = response.json()
+            toponym = json_response["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]
+            self.cords = toponym["Point"]["pos"].split()
+            self.draw()
+
