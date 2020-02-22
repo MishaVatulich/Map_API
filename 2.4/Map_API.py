@@ -35,4 +35,3 @@ class MapAPI():
             toponym = json_response["response"]["GeoObjectCollection"]["featureMember"][0]["GeoObject"]
             self.cords = toponym["Point"]["pos"].split()
             self.draw()
-
