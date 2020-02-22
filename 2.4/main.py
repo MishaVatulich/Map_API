@@ -48,6 +48,10 @@ class Main(QWidget):
             pass
         elif event.key() == Qt.Key_Down:
             pass
+        elif event.key() == Qt.Key_End:
+            self.map_api.mod += 1
+            self.map_api.draw()
+            self.image.setPixmap(QPixmap('map.png'))
 
 
 if __name__ == '__main__':
